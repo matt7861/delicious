@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const Searched = () => {
   const { search } = useParams();
@@ -19,7 +20,12 @@ export const Searched = () => {
   };
 
   return (
-    <Grid>
+    <Grid
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       {cuisineData.map((recipe, index) => (
         <Card key={index}>
           <Link to={`/recipe/${recipe.id}`}>
@@ -32,7 +38,7 @@ export const Searched = () => {
   );
 };
 
-const Grid = styled.div`
+const Grid = styled(motion.div)`
   padding-bottom: 4rem;
   margin-top: 4rem;
   display: grid;
